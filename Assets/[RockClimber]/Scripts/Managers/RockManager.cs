@@ -7,6 +7,16 @@ public class RockManager : Singleton<RockManager>
 {
     private List<JumpableRock> rocks = new List<JumpableRock>();
 
+    private void OnEnable()
+    {
+        LevelManager.Instance.OnLevelFinish.AddListener(ClearRockList);
+    }
+
+    private void OnDisable()
+    {
+        LevelManager.Instance.OnLevelFinish.RemoveListener(ClearRockList);
+    }
+
     public void AddRock(JumpableRock rock)
     {
         if (rocks.Contains(rock))
@@ -36,6 +46,11 @@ public class RockManager : Singleton<RockManager>
             return false;
         else
             return true;
+    }
+
+    public JumpableRock GetLastRock()
+    {
+        return rocks.Count > 0 ? rocks[rocks.Count - 1] : null;
     }
 
     public JumpableRock GetStartingRock()

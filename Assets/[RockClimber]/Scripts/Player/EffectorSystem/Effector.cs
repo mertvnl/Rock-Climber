@@ -40,4 +40,15 @@ public class Effector : MonoBehaviour
             Destroy(joint);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        JumpableRock rock = other.GetComponent<JumpableRock>();
+
+        if (rock != null)
+        {
+            if (rock == RockManager.Instance.GetLastRock())
+                GameManager.Instance.FinishStage(true, 2f);
+        }
+    }
 }
