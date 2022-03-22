@@ -5,22 +5,14 @@ using UnityEngine.Animations;
 
 public class Effector : MonoBehaviour
 {
-    [SerializeField] private Vector3 fixedEulerAngles;
     [SerializeField] private Transform effectorSource;
 
     private Rigidbody rigidbody;
     public Rigidbody Rigidbody { get { return rigidbody == null ? rigidbody = GetComponent<Rigidbody>() : rigidbody; } }
 
-    public void Initialise()
-    {
-        transform.SetParent(null);
-        transform.eulerAngles = fixedEulerAngles;
-    }
-
     public void EnableEffector()
     {
         transform.SetParent(null);
-        transform.eulerAngles = fixedEulerAngles;
         RecreateJoint();
     }
 

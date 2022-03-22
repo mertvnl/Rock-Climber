@@ -13,7 +13,7 @@ public class EffectorController : MonoBehaviour
     private Effector currentEffector;
     private int currentEffectorIndex;
 
-    //After unparenting, we change the euler angles for cleaner look.
+    private JumpableRock lastRock;
 
     private void OnEnable() 
     {
@@ -25,7 +25,7 @@ public class EffectorController : MonoBehaviour
         Events.OnRockClicked.RemoveListener(HandleMovement);
     }
 
-    private void Awake()
+    private void Start()
     {
         Initialise();
     }
@@ -36,12 +36,9 @@ public class EffectorController : MonoBehaviour
 
         effectors = GetComponentsInChildren<Effector>();
 
-        foreach (var effector in effectors)
-        {
-            effector.Initialise();
-        }
+        lastRock = RockManager.Instance.GetStartingRock();
 
-        LoopBetweenHands();
+        HandleMovement(lastRock);
     }
 
     private void LoopBetweenHands()
@@ -61,14 +58,16 @@ public class EffectorController : MonoBehaviour
         currentEffector.EnableEffector();
     }
 
-    private void HandleMovement(Vector3 targetPosition)
+    private void HandleMovement(JumpableRock targetRock)
     {
-        //if target rock is below dont do anything
-        if (targetPosition.y < transform.position.y)
+        // Limit player to jump one by one
+        if (!RockManager.Instance.CheckIfCanJump(targetRock, lastRock))
             return;
 
         LoopBetweenHands();
 
-        currentEffector.transform.DOMove(targetPosition, movementDuration).SetEase(movementEase);
+        currentEffector.transform.DOMove(targetRock.GetJumpPosition(), movementDuration).SetEase(movementEase);
+
+        lastRock = targetRock;
     }
 }

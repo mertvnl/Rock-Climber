@@ -157,6 +157,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a148fc3260244dc6bbb413d2f7936db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultColor:
+    serializedVersion: 2
+    rgba: 4294966345
+  lastColor:
+    serializedVersion: 2
+    rgba: 4283170629
 --- !u!135 &1166229525
 SphereCollider:
   m_ObjectHideFlags: 0

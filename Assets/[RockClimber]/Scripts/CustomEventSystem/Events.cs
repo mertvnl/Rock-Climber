@@ -6,6 +6,6 @@ namespace CustomEventSystem
     public static class Events
     {
         //Put your events here.
-        public static readonly Event<Vector3> OnRockClicked = new Event<Vector3>();
+        public static readonly Event<JumpableRock> OnRockClicked = new Event<JumpableRock>();
     }
 }
