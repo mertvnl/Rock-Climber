@@ -9,8 +9,11 @@ public class EffectorController : MonoBehaviour
     [SerializeField] private float movementDuration;
     [SerializeField] private Ease movementEase;
 
+    private Effector[] effectors;
+    private Effector currentEffector;
+    private int currentEffectorIndex;
+
     //After unparenting, we change the euler angles for cleaner look.
-    private Vector3 fixedEulerAngles = new Vector3(35, 120, -45);
 
     private void OnEnable() 
     {
@@ -29,8 +32,33 @@ public class EffectorController : MonoBehaviour
 
     private void Initialise()
     {
-        transform.SetParent(null);
-        transform.eulerAngles = fixedEulerAngles;
+        currentEffectorIndex = -1;
+
+        effectors = GetComponentsInChildren<Effector>();
+
+        foreach (var effector in effectors)
+        {
+            effector.Initialise();
+        }
+
+        LoopBetweenHands();
+    }
+
+    private void LoopBetweenHands()
+    {
+        currentEffectorIndex++;
+
+        if (currentEffectorIndex > effectors.Length - 1)
+            currentEffectorIndex = 0;
+
+        currentEffector = effectors[currentEffectorIndex];
+
+        foreach (var effector in effectors)
+        {
+            effector.DisableEffector();
+        }
+
+        currentEffector.EnableEffector();
     }
 
     private void HandleMovement(Vector3 targetPosition)
@@ -39,6 +67,8 @@ public class EffectorController : MonoBehaviour
         if (targetPosition.y < transform.position.y)
             return;
 
-        transform.DOMove(targetPosition, movementDuration).SetEase(movementEase);
+        LoopBetweenHands();
+
+        currentEffector.transform.DOMove(targetPosition, movementDuration).SetEase(movementEase);
     }
 }
