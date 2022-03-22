@@ -8,6 +8,7 @@ public class EffectorController : MonoBehaviour
 {
     [SerializeField] EffectorData effectorData;
 
+    private bool isControlable;
     private Effector[] effectors;
     private Effector currentEffector;
     private int currentEffectorIndex;
@@ -17,11 +18,13 @@ public class EffectorController : MonoBehaviour
     private void OnEnable() 
     {
         Events.OnRockClicked.AddListener(HandleMovement);
+        Events.OnObstacleCollision.AddListener(DetachHands);
     }
 
     private void OnDisable() 
     {
         Events.OnRockClicked.RemoveListener(HandleMovement);
+        Events.OnObstacleCollision.RemoveListener(DetachHands);
     }
 
     private void Start()
@@ -31,6 +34,8 @@ public class EffectorController : MonoBehaviour
 
     private void Initialise()
     {
+        isControlable = true;
+
         currentEffectorIndex = -1;
 
         effectors = GetComponentsInChildren<Effector>();
@@ -59,6 +64,9 @@ public class EffectorController : MonoBehaviour
 
     private void HandleMovement(JumpableRock targetRock)
     {
+        if (!isControlable)
+            return;
+
         // Limit player to jump one by one
         if (!RockManager.Instance.CheckIfCanJump(targetRock, lastRock))
             return;
@@ -68,5 +76,20 @@ public class EffectorController : MonoBehaviour
         currentEffector.transform.DOMove(targetRock.GetJumpPosition(), effectorData.MovementDuration).SetEase(effectorData.MovementEasing);
 
         lastRock = targetRock;
+    }
+
+    private void DetachHands()
+    {
+        if (!isControlable)
+            return;
+
+        isControlable = false;
+
+        foreach (var effector in effectors)
+        {
+            effector.DisableEffector();
+        }
+
+        GameManager.Instance.FinishStage(false, 2f);
     }
 }
