@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2021106246}
   - component: {fileID: 2021106247}
+  - component: {fileID: 1906616011128316048}
   m_Layer: 0
   m_Name: PlayerHandEffector
   m_TagString: Untagged
@@ -24,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021106245}
-  m_LocalRotation: {x: -0.37992823, y: 0.59636784, z: -0.37992823, w: 0.59636784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5792652, y: 0.79783726, z: 0.044460654}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2898538252756224991}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -65}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2021106247
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -47,6 +48,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1906616011128316048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021106245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8b9060063bf417f9c31cfef4a01219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDuration: 0.3
+  movementEase: 4
 --- !u!1 &2898538252756224984
 GameObject:
   m_ObjectHideFlags: 0
