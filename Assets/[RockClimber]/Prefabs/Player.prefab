@@ -60,7 +60,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36560b7118c474021a6f3b8817f3c667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedEulerAngles: {x: 0, y: 0, z: 0}
   effectorSource: {fileID: 7282916008954691362}
 --- !u!1 &284613630
 GameObject:
@@ -122,7 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36560b7118c474021a6f3b8817f3c667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedEulerAngles: {x: 0, y: 0, z: 0}
   effectorSource: {fileID: 7282916008954691364}
 --- !u!1 &2021106245
 GameObject:
@@ -169,8 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8b9060063bf417f9c31cfef4a01219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementDuration: 0.7
-  movementEase: 4
+  effectorData: {fileID: 11400000, guid: 3367199252bd248fd90d522e6a1f491b, type: 2}
 --- !u!1 &2898538252756224984
 GameObject:
   m_ObjectHideFlags: 0

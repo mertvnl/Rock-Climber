@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class EffectorController : MonoBehaviour
 {
-    [SerializeField] private float movementDuration;
-    [SerializeField] private Ease movementEase;
+    [SerializeField] EffectorData effectorData;
 
     private Effector[] effectors;
     private Effector currentEffector;
@@ -66,7 +65,7 @@ public class EffectorController : MonoBehaviour
 
         LoopBetweenHands();
 
-        currentEffector.transform.DOMove(targetRock.GetJumpPosition(), movementDuration).SetEase(movementEase);
+        currentEffector.transform.DOMove(targetRock.GetJumpPosition(), effectorData.MovementDuration).SetEase(effectorData.MovementEasing);
 
         lastRock = targetRock;
     }

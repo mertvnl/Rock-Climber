@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class JumpableRock : MonoBehaviour
 {
-    [SerializeField] private Color32 defaultColor;
-    [SerializeField] private Color32 lastColor;
+    [SerializeField] private RockData rockData;
 
     private const float Z_OFFSET = 0.2f;
 
@@ -23,9 +22,9 @@ public class JumpableRock : MonoBehaviour
     public void UpdateColor(bool isLast = false)
     {
         if (isLast)
-            GetComponentInChildren<Renderer>().material.color = lastColor;
+            GetComponentInChildren<Renderer>().material.color = rockData.LastColor;
         else
-            GetComponentInChildren<Renderer>().material.color = defaultColor;
+            GetComponentInChildren<Renderer>().material.color = rockData.DefaultColor;
     }
 
     public Vector3 GetJumpPosition()
