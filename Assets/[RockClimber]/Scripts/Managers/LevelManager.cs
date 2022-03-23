@@ -17,4 +17,10 @@ public class LevelManager : Singleton<LevelManager>
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void LoadNextLevel()
+    {
+        //normally we would load next level but since this prototype has no level it just restarts the level
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

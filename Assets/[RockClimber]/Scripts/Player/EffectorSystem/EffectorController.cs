@@ -29,6 +29,9 @@ public class EffectorController : MonoBehaviour
 
     private void Start()
     {
+        if (Managers.Instance == null)
+            return;
+
         Initialise();
     }
 
@@ -89,7 +92,5 @@ public class EffectorController : MonoBehaviour
         {
             effector.DisableEffector();
         }
-
-        GameManager.Instance.FinishStage(false, 2f);
     }
 }

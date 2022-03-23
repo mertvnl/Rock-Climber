@@ -12,6 +12,7 @@ public class Ragdoll : MonoBehaviour
         if (obstacle != null)
         {
             Events.OnObstacleCollision.Invoke();
+            Events.OnFail.Invoke();
         }
     }
 }

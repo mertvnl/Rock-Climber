@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using CustomEventSystem;
 using UnityEngine;
 using UnityEngine.Animations;
 
@@ -48,7 +49,7 @@ public class Effector : MonoBehaviour
         if (rock != null)
         {
             if (rock == RockManager.Instance.GetLastRock())
-                GameManager.Instance.FinishStage(true, 2f);
+                Events.OnSuccess.Invoke();
         }
     }
 }

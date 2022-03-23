@@ -11,6 +11,9 @@ public class JumpableRock : MonoBehaviour
 
     private void Awake()
     {
+        if (Managers.Instance == null)
+            return;
+
         RockManager.Instance.AddRock(this);
     }
 

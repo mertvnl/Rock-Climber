@@ -11,6 +11,8 @@ public class GameManager : Singleton<GameManager>
 
     public IEnumerator FinishStageCo(bool isSuccess, float delay = 0f)
     {
+        LevelManager.Instance.OnLevelFinish.Invoke();
+
         if (isSuccess)
         {
             LevelManager.Instance.OnLevelSuccess.Invoke();
@@ -23,7 +25,5 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForSeconds(delay);
             LevelManager.Instance.RestartLevel();
         }
-
-        LevelManager.Instance.OnLevelFinish.Invoke();
     }
 }
