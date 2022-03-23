@@ -1,6 +1,8 @@
-# Rock-Climber
+# Rock Climber Gameplay
 
-## Game Design Instructions
+https://user-images.githubusercontent.com/41839620/159781140-441d849f-1e41-494f-aa56-4de2e7afa1b1.mp4
+
+# Game Design Instructions
 
 #### Level Generator
 
